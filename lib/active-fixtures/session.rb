@@ -1,22 +1,27 @@
 module ActiveFixtures
   class Session < Resource
+    CLEAN_NAME = :__clean
+
     module Helper
-      def af_session(name, &block)
+      def af_session(name = CLEAN_NAME, &block)
         Session[name].perform(block)
       end
     end
 
-    attribute :name, type: String
+    attribute :name, type: String, default: CLEAN_NAME
     attribute :url, type: String
     attribute :cookies, type: Object, default: []
 
-    def initialize(build_step)
-      self.name = build_step[:name]
+    def initialize(attrs = {})
+      super
 
-      using_session do
-        build_step[:block].call
-        self.url = context.current_url
-        self.cookies = context.page.driver.cookies.values.map{ |c| c.instance_variable_get(:@attributes).symbolize_keys}
+      if attrs[:block]
+        using_session do
+          attrs[:block].call
+
+          self.url = context.current_url
+          self.cookies = context.page.driver.cookies.values.map{ |c| c.instance_variable_get(:@attributes).symbolize_keys}
+        end
       end
     end
 
@@ -26,7 +31,7 @@ module ActiveFixtures
         cookies.each do |cookie|
           context.page.driver.set_cookie(nil, nil, cookie)
         end
-        context.visit url
+        context.visit(url) if url
         block.call
       end
     end
