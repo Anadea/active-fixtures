@@ -26,14 +26,18 @@ module ActiveFixtures
     end
 
     def perform(block)
+      res = nil
+
       using_session do
         context.reset_session!
         cookies.each do |cookie|
           context.page.driver.set_cookie(nil, nil, cookie)
         end
         context.visit(url) if url
-        block.call
+        res = block.call
       end
+
+      res
     end
 
     private
