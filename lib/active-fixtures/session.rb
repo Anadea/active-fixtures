@@ -15,6 +15,8 @@ module ActiveFixtures
     def initialize(attrs = {})
       super
 
+      cookies.map!(&:symbolize_keys!)
+
       if attrs[:block]
         using_session do
           attrs[:block].call

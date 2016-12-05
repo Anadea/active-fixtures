@@ -6,6 +6,7 @@ module ActiveFixtures
   autoload :Session, 'active-fixtures/session'
   autoload :StateBuilder, 'active-fixtures/state_builder'
   autoload :State, 'active-fixtures/state'
+  autoload :StateDumper, 'active-fixtures/state_dumper'
 
   mattr_accessor :state_builders
   self.state_builders = {}
@@ -13,6 +14,14 @@ module ActiveFixtures
   class << self
     def populate(name, &block)
       state_builders[name] = StateBuilder.new(block)
+    end
+
+    def init!
+      StateDumper.init!
+    end
+
+    def cleanup!
+      StateDumper.cleanup!
     end
 
     def prepare!(name)
