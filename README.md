@@ -41,7 +41,7 @@ Currently works with Poltergeist and PostgreSQL.
 Add to your Gemfile:
 
 ```ruby
-gem 'ruby-features', group: :test
+gem 'active-fixtures', group: :test
 ```
 
 Add to your rspec helper:
