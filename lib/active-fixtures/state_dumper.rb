@@ -52,7 +52,7 @@ module ActiveFixtures
       end
 
       def dump_db(state_name)
-        args = ['-c', '-Fc', '-f', dump_db_file(state_name), DB_NAME]
+        args = ['-x', '-O', '-c', '-Fc', '-f', dump_db_file(state_name), DB_NAME]
         Kernel.system('pg_dump', *args)
       end
 
