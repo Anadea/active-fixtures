@@ -8,11 +8,11 @@ RSpec.configure do |config|
     example.run
   end
 
-  config.before(:all) do
+  config.before(:suite) do
     ActiveFixtures.init!
   end
 
-  config.after(:all) do
+  config.after(:suite) do
     ActiveFixtures.cleanup!
   end
 

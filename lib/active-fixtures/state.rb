@@ -23,7 +23,6 @@ module ActiveFixtures
 
         StateDumper.dump(self)
       end
-
     end
 
     def read_entity(name, resource_class)
