@@ -9,6 +9,8 @@ module ActiveFixtures
   autoload :State, 'active-fixtures/state'
   autoload :StateDumper, 'active-fixtures/state_dumper'
 
+  class PrepareStateError < StandardError; end
+
   mattr_accessor :state_builders
   self.state_builders = {}
 
@@ -26,6 +28,8 @@ module ActiveFixtures
     end
 
     def prepare!(name)
+      raise PrepareStateError.new("Undefined active fixture: #{name.inspect}") unless state_builders.key?(name)
+
       self.current_state = State.new(name)
       current_state.prepare!(state_builders[name])
     end
