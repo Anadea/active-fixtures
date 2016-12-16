@@ -1,4 +1,5 @@
 require 'active-fixtures/version'
+require 'active_attr'
 
 module ActiveFixtures
   autoload :Resource, 'active-fixtures/resource'

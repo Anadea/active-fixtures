@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
   s.test_files  = Dir['{spec}/**/*']
 
   s.required_ruby_version = '>= 2.3.1'
+
+  s.add_dependency 'active_attr'
 end
