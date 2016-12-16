@@ -33,7 +33,7 @@ which entities he understand, how he affects to such entities.
 In general case, tests in isolation are at least useless, at max - hurtful.
 Lets write acceptance tests instead!
 
-## requirements
+## Requirements
 Currently works with Poltergeist and PostgreSQL.
 
 ## Getting started
