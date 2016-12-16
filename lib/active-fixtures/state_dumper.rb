@@ -1,7 +1,7 @@
 module ActiveFixtures
   module StateDumper
     FIXTURES_PATH = Rails.root.join('spec/fixtures/active').freeze
-    DB_NAME = ApplicationRecord.connection_config[:database].freeze
+    DB_NAME = Rails.configuration.database_configuration[Rails.env]['database'].freeze
     CLEAN_STATE_NAME = :__clean
 
     class << self
