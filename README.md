@@ -38,15 +38,22 @@ Currently works with Poltergeist and PostgreSQL.
 
 ## Getting started
 
-Add to your Gemfile:
+Add to your `Gemfile`:
 
 ```ruby
-gem 'active-fixtures', group: :test
+group :development, :test do
+  gem 'active-fixtures'
+end
 ```
 
-Add to your rspec helper:
+Add to your `rails_helper.rb`:
 ```ruby
 require 'active-fixtures/rspec'
+```
+
+Add to your `.gitignore`:
+```
+spec/fixtures/active
 ```
 
 Remove Database Cleaners from your project, ActiveFixtures will take care about database cleanup in additional.
@@ -170,6 +177,13 @@ ActiveFixtures work fairly, but effectively.
 
 Fixture will be populated on the first it's usage, by genuine application's user actions.
 For the next example it will be loaded from cache - no sense to to the same work again.
+
+In case when you affecting the fixture creation process
+(making changes in fixtures, related application functionality, DB schema etc),
+you need to clean the fixtures cache manually before the tests run:
+```console
+  $ rake active_fixtures:clean
+```
 
 ## License
 MIT License. Copyright (c) 2016 Sergey Tokarenko
