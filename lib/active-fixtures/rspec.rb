@@ -13,7 +13,7 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
-    ActiveFixtures.cleanup!
+    ActiveFixtures.load_clean!
   end
 
 end

@@ -1,4 +1,5 @@
 require 'active-fixtures/version'
+require 'active-fixtures/railtie'
 require 'active_attr'
 
 module ActiveFixtures
@@ -21,6 +22,10 @@ module ActiveFixtures
 
     def init!
       StateDumper.init!
+    end
+
+    def load_clean!
+      StateDumper.load_clean!
     end
 
     def cleanup!

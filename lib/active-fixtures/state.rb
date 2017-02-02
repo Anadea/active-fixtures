@@ -12,7 +12,7 @@ module ActiveFixtures
       if StateDumper.exists?(name)
         entities.merge!(StateDumper.load(name))
       else
-        StateDumper.load_clean
+        StateDumper.load_clean!
 
         clean_session = Session.new
         write_entity(clean_session.name, clean_session)

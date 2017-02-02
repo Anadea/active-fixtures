@@ -11,7 +11,6 @@ module ActiveFixtures
       end
 
       def cleanup!
-        load_clean
         FileUtils.rm_rf(FIXTURES_PATH) if File.exist?(FIXTURES_PATH)
       end
 
@@ -19,7 +18,7 @@ module ActiveFixtures
         File.exists?(dump_db_file(state_name))
       end
 
-      def load_clean
+      def load_clean!
         load_db(CLEAN_STATE_NAME)
       end
 
