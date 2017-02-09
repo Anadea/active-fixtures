@@ -1,5 +1,7 @@
 module ActiveFixtures
   class StateBuilder
+    extend Context
+
     attr_accessor :steps
 
     def initialize(block)
@@ -26,12 +28,20 @@ module ActiveFixtures
       steps << {type: :session, name: name, block: block}
     end
 
+    def time(name, &block)
+      steps << {type: :time, name: name, block: block}
+    end
+
     def build_resource(build_step)
       build_step[:block].call
     end
 
     def build_session(build_step)
       Session.new(build_step)
+    end
+
+    def build_time(build_step)
+      Time.new(moment: build_step[:block].call)
     end
   end
 end

@@ -1,11 +1,15 @@
 require 'active-fixtures/version'
 require 'active-fixtures/railtie'
 require 'active_attr'
+require 'timecop'
 
 module ActiveFixtures
+  autoload :Context, 'active-fixtures/context'
+
   autoload :Resource, 'active-fixtures/resource'
 
   autoload :Session, 'active-fixtures/session'
+  autoload :Time, 'active-fixtures/time'
   autoload :StateBuilder, 'active-fixtures/state_builder'
   autoload :State, 'active-fixtures/state'
   autoload :StateDumper, 'active-fixtures/state_dumper'
