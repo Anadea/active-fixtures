@@ -172,6 +172,34 @@ it 'should pass' do
 end
 ```
 
+### Active time
+Lets stop to use the magic time moments for time freezing and traveling.
+Use the `named` time moments:
+```ruby
+ActiveFixtures.populate(:default) do
+  time(:today) { Time.new(1983, 1, 2, 3, 4) }
+  time(:yesterday) { af_time(:today) - 1.day }
+  time(:week_ago) { af_time(:today) - 7.days }
+
+  resource(:invited_admin) {
+    af_time(:week_ago) {
+      AFUser.create(login: 'new_user@lvh.me')
+    }
+  }
+end
+```
+
+In the tests:
+```ruby
+describe 'Users' do
+  around { |example|
+    af_time(:today) { example.run }
+  }
+
+  it 'should pass' do; end
+end
+```
+
 ### How it works
 ActiveFixtures work fairly, but effectively.
 
