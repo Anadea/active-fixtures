@@ -204,7 +204,7 @@ end
 ActiveFixtures work fairly, but effectively.
 
 Fixture will be populated on the first it's usage, by genuine application's user actions.
-For the next example it will be loaded from cache - no sense to to the same work again.
+For the next example it will be loaded from cache - no sense to do the same work again.
 
 In case when you affecting the fixture creation process
 (making changes in fixtures, related application functionality, DB schema etc),
